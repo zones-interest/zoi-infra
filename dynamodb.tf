@@ -1,7 +1,7 @@
 resource "aws_dynamodb_table" "users" {
-  name         = "socpro-users"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+  name           = "zoi-users"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
 
   attribute {
     name = "id"
@@ -10,9 +10,9 @@ resource "aws_dynamodb_table" "users" {
 }
 
 resource "aws_dynamodb_table" "services" {
-  name         = "socpro-services"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+  name           = "zoi-services"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
 
   attribute {
     name = "id"
@@ -21,9 +21,9 @@ resource "aws_dynamodb_table" "services" {
 }
 
 resource "aws_dynamodb_table" "projects" {
-  name         = "socpro-projects"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+  name           = "zoi-projects"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
 
   attribute {
     name = "id"
@@ -32,9 +32,9 @@ resource "aws_dynamodb_table" "projects" {
 }
 
 resource "aws_dynamodb_table" "reservations" {
-  name         = "socpro-reservations"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+  name           = "zoi-reservations"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
 
   attribute {
     name = "id"
@@ -43,9 +43,9 @@ resource "aws_dynamodb_table" "reservations" {
 }
 
 resource "aws_dynamodb_table" "profiles" {
-  name         = "socpro-profiles"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+  name           = "zoi-profiles"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
 
   attribute {
     name = "id"
@@ -54,9 +54,9 @@ resource "aws_dynamodb_table" "profiles" {
 }
 
 resource "aws_dynamodb_table" "accounts" {
-  name         = "socpro-accounts"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "id"
+  name           = "zoi-accounts"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "id"
 
   attribute {
     name = "id"
@@ -65,9 +65,9 @@ resource "aws_dynamodb_table" "accounts" {
 }
 
 resource "aws_dynamodb_table" "sessions" {
-  name         = "socpro-sessions"
-  billing_mode = "PAY_PER_REQUEST"
-  hash_key     = "sessionToken"
+  name           = "zoi-sessions"
+  billing_mode   = "PAY_PER_REQUEST"
+  hash_key       = "sessionToken"
 
   attribute {
     name = "sessionToken"

@@ -6,12 +6,12 @@ data "archive_file" "lambda_zip" {
 
 resource "aws_lambda_function" "api" {
   filename         = data.archive_file.lambda_zip.output_path
-  function_name    = "socpro-api"
-  role             = aws_iam_role.lambda_role.arn
-  handler          = "handler.handler"
-  runtime          = "nodejs18.x"
-  timeout          = 30
-  memory_size      = 1024
+  function_name    = "zoi-api"
+  role            = aws_iam_role.lambda_role.arn
+  handler         = "handler.handler"
+  runtime         = "nodejs18.x"
+  timeout         = 30
+  memory_size     = 1024
   source_code_hash = data.archive_file.lambda_zip.output_base64sha256
 
   environment {

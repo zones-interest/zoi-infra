@@ -1,5 +1,5 @@
 resource "aws_iam_role" "lambda_role" {
-  name = "socpro-lambda-role"
+  name = "zoi-lambda-role"
 
   assume_role_policy = jsonencode({
     Version = "2012-10-17"
@@ -16,7 +16,7 @@ resource "aws_iam_role" "lambda_role" {
 }
 
 resource "aws_iam_role_policy" "lambda_policy" {
-  name = "socpro-lambda-policy"
+  name = "zoi-lambda-policy"
   role = aws_iam_role.lambda_role.id
 
   policy = jsonencode({
@@ -50,7 +50,7 @@ resource "aws_iam_role_policy" "lambda_policy" {
           "dynamodb:Query",
           "dynamodb:Scan"
         ]
-        Resource = "arn:aws:dynamodb:eu-west-2:*:table/socpro-*"
+        Resource = "arn:aws:dynamodb:eu-west-2:*:table/zoi-*"
       }
     ]
   })

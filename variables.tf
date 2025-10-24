@@ -3,6 +3,12 @@ variable "github_repo_url" {
   type        = string
 }
 
+variable "github_access_token" {
+  description = "GitHub personal access token for private repo access"
+  type        = string
+  sensitive   = true
+}
+
 variable "nextauth_secret" {
   description = "NextAuth secret key"
   type        = string

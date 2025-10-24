@@ -1,5 +1,5 @@
 resource "aws_api_gateway_rest_api" "api" {
-  name = "socpro-api"
+  name = "zoi-api"
 }
 
 resource "aws_api_gateway_resource" "proxy" {
@@ -21,8 +21,8 @@ resource "aws_api_gateway_integration" "lambda" {
   http_method = aws_api_gateway_method.proxy.http_method
 
   integration_http_method = "POST"
-  type                    = "AWS_PROXY"
-  uri                     = aws_lambda_function.api.invoke_arn
+  type                   = "AWS_PROXY"
+  uri                    = aws_lambda_function.api.invoke_arn
 }
 
 resource "aws_api_gateway_deployment" "api" {

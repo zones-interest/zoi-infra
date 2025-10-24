@@ -1,6 +1,7 @@
 resource "aws_amplify_app" "frontend" {
-  name       = "socpro-frontend"
-  repository = var.github_repo_url
+  name         = "zoi-frontend"
+  repository   = var.github_repo_url
+  access_token = var.github_access_token
 
   build_spec = <<-EOT
     version: 1

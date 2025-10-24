@@ -1,5 +1,5 @@
 resource "aws_s3_bucket" "images" {
-  bucket = "socpro-api-dev-images"
+  bucket = "zoi-api-dev-images"
 }
 
 resource "aws_s3_bucket_cors_configuration" "images" {
