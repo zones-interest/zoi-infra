@@ -9,13 +9,13 @@ resource "aws_amplify_app" "frontend" {
       phases:
         preBuild:
           commands:
-            - cd frontend
+            - cd zoi
             - npm ci
         build:
           commands:
             - npm run build
       artifacts:
-        baseDirectory: frontend/.next
+        baseDirectory: zoi/.next
         files:
           - '**/*'
   EOT
@@ -23,11 +23,12 @@ resource "aws_amplify_app" "frontend" {
   environment_variables = {
     NEXT_PUBLIC_API_URL = "https://${aws_api_gateway_rest_api.api.id}.execute-api.eu-west-2.amazonaws.com/dev"
     NEXTAUTH_SECRET     = var.nextauth_secret
+    NEXTAUTH_URL        = "https://main.d190rl2a8kesnw.amplifyapp.com"
   }
 
   custom_rule {
     source = "/<*>"
-    status = "404"
+    status = "200"
     target = "/index.html"
   }
 }

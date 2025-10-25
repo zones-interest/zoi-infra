@@ -7,7 +7,7 @@ data "archive_file" "lambda_layer" {
 
 resource "aws_lambda_layer_version" "shared_layer" {
   filename         = data.archive_file.lambda_layer.output_path
-  layer_name       = "socpro-shared-layer"
+  layer_name       = "zoi-shared-layer"
   compatible_runtimes = ["python3.9"]
   source_code_hash = data.archive_file.lambda_layer.output_base64sha256
 }
@@ -21,7 +21,7 @@ data "archive_file" "create_project_zip" {
 
 resource "aws_lambda_function" "create_project" {
   filename         = data.archive_file.create_project_zip.output_path
-  function_name    = "socpro-create-project"
+  function_name    = "zoi-create-project"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -38,6 +38,32 @@ resource "aws_lambda_function" "create_project" {
   }
 }
 
+# Login User Lambda
+data "archive_file" "login_user_zip" {
+  type        = "zip"
+  source_dir  = "${path.module}/../lambdas/login_user"
+  output_path = "${path.module}/login_user.zip"
+}
+
+resource "aws_lambda_function" "login_user" {
+  filename         = data.archive_file.login_user_zip.output_path
+  function_name    = "zoi-login-user"
+  role            = aws_iam_role.lambda_role.arn
+  handler         = "lambda_function.lambda_handler"
+  runtime         = "python3.9"
+  timeout         = 30
+  memory_size     = 256
+  source_code_hash = data.archive_file.login_user_zip.output_base64sha256
+  layers          = [aws_lambda_layer_version.shared_layer.arn]
+
+  environment {
+    variables = {
+      DYNAMODB_TABLE_USERS = aws_dynamodb_table.users.name
+      JWT_SECRET = var.nextauth_secret
+    }
+  }
+}
+
 # Register User Lambda
 data "archive_file" "register_user_zip" {
   type        = "zip"
@@ -47,7 +73,7 @@ data "archive_file" "register_user_zip" {
 
 resource "aws_lambda_function" "register_user" {
   filename         = data.archive_file.register_user_zip.output_path
-  function_name    = "socpro-register-user"
+  function_name    = "zoi-register-user"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -73,7 +99,7 @@ data "archive_file" "create_profile_zip" {
 
 resource "aws_lambda_function" "create_profile" {
   filename         = data.archive_file.create_profile_zip.output_path
-  function_name    = "socpro-create-profile"
+  function_name    = "zoi-create-profile"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -99,7 +125,7 @@ data "archive_file" "get_profile_zip" {
 
 resource "aws_lambda_function" "get_profile" {
   filename         = data.archive_file.get_profile_zip.output_path
-  function_name    = "socpro-get-profile"
+  function_name    = "zoi-get-profile"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -125,7 +151,7 @@ data "archive_file" "update_profile_zip" {
 
 resource "aws_lambda_function" "update_profile" {
   filename         = data.archive_file.update_profile_zip.output_path
-  function_name    = "socpro-update-profile"
+  function_name    = "zoi-update-profile"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -151,7 +177,7 @@ data "archive_file" "create_reservation_zip" {
 
 resource "aws_lambda_function" "create_reservation" {
   filename         = data.archive_file.create_reservation_zip.output_path
-  function_name    = "socpro-create-reservation"
+  function_name    = "zoi-create-reservation"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -177,7 +203,7 @@ data "archive_file" "get_reservations_zip" {
 
 resource "aws_lambda_function" "get_reservations" {
   filename         = data.archive_file.get_reservations_zip.output_path
-  function_name    = "socpro-get-reservations"
+  function_name    = "zoi-get-reservations"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -203,7 +229,7 @@ data "archive_file" "update_reservation_zip" {
 
 resource "aws_lambda_function" "update_reservation" {
   filename         = data.archive_file.update_reservation_zip.output_path
-  function_name    = "socpro-update-reservation"
+  function_name    = "zoi-update-reservation"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -229,7 +255,7 @@ data "archive_file" "delete_reservation_zip" {
 
 resource "aws_lambda_function" "delete_reservation" {
   filename         = data.archive_file.delete_reservation_zip.output_path
-  function_name    = "socpro-delete-reservation"
+  function_name    = "zoi-delete-reservation"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -255,7 +281,7 @@ data "archive_file" "create_service_zip" {
 
 resource "aws_lambda_function" "create_service" {
   filename         = data.archive_file.create_service_zip.output_path
-  function_name    = "socpro-create-service"
+  function_name    = "zoi-create-service"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -281,7 +307,7 @@ data "archive_file" "get_services_zip" {
 
 resource "aws_lambda_function" "get_services" {
   filename         = data.archive_file.get_services_zip.output_path
-  function_name    = "socpro-get-services"
+  function_name    = "zoi-get-services"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -307,7 +333,7 @@ data "archive_file" "delete_service_zip" {
 
 resource "aws_lambda_function" "delete_service" {
   filename         = data.archive_file.delete_service_zip.output_path
-  function_name    = "socpro-delete-service"
+  function_name    = "zoi-delete-service"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -333,7 +359,7 @@ data "archive_file" "upload_file_zip" {
 
 resource "aws_lambda_function" "upload_file" {
   filename         = data.archive_file.upload_file_zip.output_path
-  function_name    = "socpro-upload-file"
+  function_name    = "zoi-upload-file"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
@@ -359,7 +385,7 @@ data "archive_file" "get_projects_zip" {
 
 resource "aws_lambda_function" "get_projects" {
   filename         = data.archive_file.get_projects_zip.output_path
-  function_name    = "socpro-get-projects"
+  function_name    = "zoi-get-projects"
   role            = aws_iam_role.lambda_role.arn
   handler         = "lambda_function.lambda_handler"
   runtime         = "python3.9"
