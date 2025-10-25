@@ -3,22 +3,7 @@ resource "aws_amplify_app" "frontend" {
   repository   = var.github_repo_url
   access_token = var.github_access_token
 
-  build_spec = <<-EOT
-    version: 1
-    frontend:
-      phases:
-        preBuild:
-          commands:
-            - cd zoi
-            - npm ci
-        build:
-          commands:
-            - npm run build
-      artifacts:
-        baseDirectory: zoi/.next
-        files:
-          - '**/*'
-  EOT
+  build_spec = "zoi/amplify.yml"
 
   environment_variables = {
     NEXT_PUBLIC_API_URL = "https://${aws_api_gateway_rest_api.api.id}.execute-api.eu-west-2.amazonaws.com/dev"
