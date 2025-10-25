@@ -8,14 +8,19 @@ output "s3_bucket" {
   value       = aws_s3_bucket.images.bucket
 }
 
-output "apprunner_service_url" {
-  description = "App Runner service URL"
-  value       = "https://${aws_apprunner_service.zoi.service_url}"
+output "app_url" {
+  description = "Application Load Balancer DNS name"
+  value       = "http://${aws_lb.zoi.dns_name}"
 }
 
-output "apprunner_service_arn" {
-  description = "App Runner service ARN"
-  value       = aws_apprunner_service.zoi.arn
+output "ecs_cluster_name" {
+  description = "ECS cluster name"
+  value       = aws_ecs_cluster.zoi.name
+}
+
+output "ecs_service_name" {
+  description = "ECS service name"
+  value       = aws_ecs_service.zoi.name
 }
 
 output "github_repo_url" {

@@ -1,3 +1,5 @@
+# App Runner resources - COMMENTED OUT FOR FARGATE DEPLOYMENT
+/*
 # IAM role for App Runner
 resource "aws_iam_role" "apprunner_build_role" {
   name = "zoi-apprunner-build-role"
@@ -170,6 +172,7 @@ resource "aws_cloudwatch_log_group" "apprunner_logs" {
     Name = "zoi-apprunner-logs"
   }
 }
+*/
 
 
 

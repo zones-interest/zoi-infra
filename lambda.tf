@@ -1,7 +1,7 @@
 # Lambda Layer for shared dependencies
 data "archive_file" "lambda_layer" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/shared"
+  source_dir  = "${path.module}/../zoi-api/shared"
   output_path = "${path.module}/lambda_layer.zip"
 }
 
@@ -15,7 +15,7 @@ resource "aws_lambda_layer_version" "shared_layer" {
 # Create Project Lambda
 data "archive_file" "create_project_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/create_project"
+  source_dir  = "${path.module}/../zoi-api/create_project"
   output_path = "${path.module}/create_project.zip"
 }
 
@@ -41,7 +41,7 @@ resource "aws_lambda_function" "create_project" {
 # Login User Lambda
 data "archive_file" "login_user_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/login_user"
+  source_dir  = "${path.module}/../zoi-api/login_user"
   output_path = "${path.module}/login_user.zip"
 }
 
@@ -67,7 +67,7 @@ resource "aws_lambda_function" "login_user" {
 # Register User Lambda
 data "archive_file" "register_user_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/register_user"
+  source_dir  = "${path.module}/../zoi-api/register_user"
   output_path = "${path.module}/register_user.zip"
 }
 
@@ -93,7 +93,7 @@ resource "aws_lambda_function" "register_user" {
 # Create Profile Lambda
 data "archive_file" "create_profile_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/create_profile"
+  source_dir  = "${path.module}/../zoi-api/create_profile"
   output_path = "${path.module}/create_profile.zip"
 }
 
@@ -119,7 +119,7 @@ resource "aws_lambda_function" "create_profile" {
 # Get Profile Lambda
 data "archive_file" "get_profile_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/get_profile"
+  source_dir  = "${path.module}/../zoi-api/get_profile"
   output_path = "${path.module}/get_profile.zip"
 }
 
@@ -145,7 +145,7 @@ resource "aws_lambda_function" "get_profile" {
 # Update Profile Lambda
 data "archive_file" "update_profile_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/update_profile"
+  source_dir  = "${path.module}/../zoi-api/update_profile"
   output_path = "${path.module}/update_profile.zip"
 }
 
@@ -171,7 +171,7 @@ resource "aws_lambda_function" "update_profile" {
 # Create Reservation Lambda
 data "archive_file" "create_reservation_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/create_reservation"
+  source_dir  = "${path.module}/../zoi-api/create_reservation"
   output_path = "${path.module}/create_reservation.zip"
 }
 
@@ -197,7 +197,7 @@ resource "aws_lambda_function" "create_reservation" {
 # Get Reservations Lambda
 data "archive_file" "get_reservations_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/get_reservations"
+  source_dir  = "${path.module}/../zoi-api/get_reservations"
   output_path = "${path.module}/get_reservations.zip"
 }
 
@@ -223,7 +223,7 @@ resource "aws_lambda_function" "get_reservations" {
 # Update Reservation Lambda
 data "archive_file" "update_reservation_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/update_reservation"
+  source_dir  = "${path.module}/../zoi-api/update_reservation"
   output_path = "${path.module}/update_reservation.zip"
 }
 
@@ -249,7 +249,7 @@ resource "aws_lambda_function" "update_reservation" {
 # Delete Reservation Lambda
 data "archive_file" "delete_reservation_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/delete_reservation"
+  source_dir  = "${path.module}/../zoi-api/delete_reservation"
   output_path = "${path.module}/delete_reservation.zip"
 }
 
@@ -275,7 +275,7 @@ resource "aws_lambda_function" "delete_reservation" {
 # Create Service Lambda
 data "archive_file" "create_service_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/create_service"
+  source_dir  = "${path.module}/../zoi-api/create_service"
   output_path = "${path.module}/create_service.zip"
 }
 
@@ -301,7 +301,7 @@ resource "aws_lambda_function" "create_service" {
 # Get Services Lambda
 data "archive_file" "get_services_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/get_services"
+  source_dir  = "${path.module}/../zoi-api/get_services"
   output_path = "${path.module}/get_services.zip"
 }
 
@@ -327,7 +327,7 @@ resource "aws_lambda_function" "get_services" {
 # Delete Service Lambda
 data "archive_file" "delete_service_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/delete_service"
+  source_dir  = "${path.module}/../zoi-api/delete_service"
   output_path = "${path.module}/delete_service.zip"
 }
 
@@ -353,7 +353,7 @@ resource "aws_lambda_function" "delete_service" {
 # Upload File Lambda
 data "archive_file" "upload_file_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/upload_file"
+  source_dir  = "${path.module}/../zoi-api/upload_file"
   output_path = "${path.module}/upload_file.zip"
 }
 
@@ -379,7 +379,7 @@ resource "aws_lambda_function" "upload_file" {
 # Get Projects Lambda
 data "archive_file" "get_projects_zip" {
   type        = "zip"
-  source_dir  = "${path.module}/../lambdas/get_projects"
+  source_dir  = "${path.module}/../zoi-api/get_projects"
   output_path = "${path.module}/get_projects.zip"
 }
 
